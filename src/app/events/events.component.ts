@@ -93,13 +93,13 @@ export class EventsComponent implements OnInit {
     private eventService: EventService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.getevents();
+    this.getEvents();
     this.stateGroupOptions = this.stateForm.get('states')!.valueChanges.pipe(
       startWith(''),
       map(value => this._filterGroup(value))
     );
   }
-  getevents(): void {
+  getEvents(): void {
     this.eventService.getEvents().subscribe(events => this.events = events);
   }
   add(id: number,

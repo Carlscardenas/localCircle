@@ -10,12 +10,12 @@
     <input #ID />
   </label>
   <br>
-  <label>First Name:
-    <input #first />
+  <label>Name:
+    <input #name />
   </label>
   <br>
-  <label>Last Name:
-    <input #last/>
+  <label>Organization:
+    <input #org/>
   </label>
   <br>
   <label>Email:
@@ -31,18 +31,10 @@
   </label>
   <br>
 
-  <form [formGroup]="stateForm">
-    <mat-form-field>
-      <input type="text" matInput placeholder="States Group" formControlName="stateGroup">
-      <mat-autocomplete #autoGroup="matAutocomplete">
-        <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
-          <mat-option *ngFor="let name of group.names" [value]="name">
-            {{name}}
-          </mat-option>
-        </mat-optgroup>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
+  <label>State;
+    <input #state/>
+  </label>
+  <br>
 
   <br>
   <label>Zip:
@@ -50,16 +42,15 @@
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
   <button (click)="add( ID.size,
-                        first.value,
-                        last.value,
+                        name.value,
+                        org.value,
                         email.value,
                         address.value,
                         city.value,
                         state.value,
                         zip.value);
         ID.size=0;
-        first.value='';
-        last.value='';
+        name.value='';
         email.value='';
         address.value='';
         city.value='';
@@ -74,7 +65,7 @@
 <ul class="Remove events">
   <li *ngFor="let event of events">
     <a routerLink="/detail/{{event.id}}">
-      <span class="badge">{{event.id}} {{event.firstName}} {{event.lastName}} </span>
+      <span class="badge">{{event.id}} {{event.name}}  </span>
     </a>
     <button class="delete" title="delete hero"
             (click)="delete(event)">x</button>

@@ -20,6 +20,10 @@ export class EventService {
 
   private eventsUrl = 'http://localhost:8080/events'; // url to web api
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService) {
@@ -65,6 +69,14 @@ export class EventService {
     return this.http.get<Event>(url).pipe(
       tap(_ => this.log(`fetched event state=${state}`)),
       catchError(this.handleError<Event>(`getEvent state=${state}`))
+    );
+  }
+
+  getEventZip(zip: number): Observable<Event> {
+    const url = `${this.eventsUrl}/${zip}`;
+    return this.http.get<Event>(url).pipe(
+      tap(_ => this.log(`fetched event zip=${zip}`)),
+      catchError(this.handleError<Event>(`getEvent zip=${zip}`))
     );
   }
 

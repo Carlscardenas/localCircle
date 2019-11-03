@@ -1,5 +1,6 @@
 export class Event {
   id: number;
+  name: string;
   org: string;
   email: string;
   contact: string;
