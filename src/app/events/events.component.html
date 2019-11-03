@@ -1,1 +1,87 @@
-<p>events works!</p>
+
+<h2>events</h2>
+
+<div>
+  <label>Add New event
+  </label>
+</div>
+<div>
+  <label>event ID:
+    <input #ID />
+  </label>
+  <br>
+  <label>First Name:
+    <input #first />
+  </label>
+  <br>
+  <label>Last Name:
+    <input #last/>
+  </label>
+  <br>
+  <label>Email:
+    <input #email/>
+  </label>
+  <br>
+  <label>Address:
+    <input #address/>
+  </label>
+  <br>
+  <label>City;
+    <input #city/>
+  </label>
+  <br>
+
+  <form [formGroup]="stateForm">
+    <mat-form-field>
+      <input type="text" matInput placeholder="States Group" formControlName="stateGroup">
+      <mat-autocomplete #autoGroup="matAutocomplete">
+        <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+          <mat-option *ngFor="let name of group.names" [value]="name">
+            {{name}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <br>
+  <label>Zip:
+    <input #zip/>
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add( ID.size,
+                        first.value,
+                        last.value,
+                        email.value,
+                        address.value,
+                        city.value,
+                        state.value,
+                        zip.value);
+        ID.size=0;
+        first.value='';
+        last.value='';
+        email.value='';
+        address.value='';
+        city.value='';
+        state.value='';
+        zip.value=''">
+    add
+  </button>
+</div>
+<hr>
+
+
+<ul class="Remove events">
+  <li *ngFor="let event of events">
+    <a routerLink="/detail/{{event.id}}">
+      <span class="badge">{{event.id}} {{event.firstName}} {{event.lastName}} </span>
+    </a>
+    <button class="delete" title="delete hero"
+            (click)="delete(event)">x</button>
+  </li>
+</ul>
+
+
+
+
+

@@ -1,1 +1,29 @@
-<p>events-detail works!</p>
+<div *ngIf="event">
+
+  <h2>{{event.firstName | uppercase}} Details</h2>
+  <div><span>id: </span>{{event.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="event.firstName" placeholder="firstName"/>
+    </label>
+    <label>name:
+      <input [(ngModel)]="event.lastName" placeholder="lastName"/>
+    </label>
+    <label>address:
+      <input [(ngModel)]="event.address" placeholder="address"/>
+    </label>
+    <label>city:
+      <input [(ngModel)]="event.city" placeholder="city"/>
+    </label>
+    <label>state:
+      <input [(ngModel)]="event.state" placeholder="state"/>
+    </label>
+    <label>zip:
+      <input [(ngModel)]="event.zip" placeholder="zip"/>
+    </label>
+
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>
+
